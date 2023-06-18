@@ -3,6 +3,7 @@ import { stdin, stdout } from "node:process";
 import os from "node:os";
 import path from "node:path";
 import myCd from "./modules/my-cd.js";
+import myLs from "./modules/my-ls.js";
 import { mkdir, access, copyFile, readdir, stat } from "node:fs/promises";
 import { log } from "node:console";
 // npm run start -- --username=Aleksandr
@@ -21,6 +22,7 @@ rl.on("line", async (input) => {
     } else if (input.startsWith("cd ")) {
       workingDir = await myCd.cd(workingDir, input.slice(3).trim());
     } else if (input === "ls") {
+      myLs.ls(workingDir)
     } else {
       console.log(`\u001B[31m Invalid input \u001B[0m`);
     }
