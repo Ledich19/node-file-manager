@@ -6,6 +6,7 @@ import myCd from "./modules/my-cd.js";
 import myLs from "./modules/my-ls.js";
 import myFs from "./modules/my-fs.js";
 import myOs from "./modules/my-os.js";
+import myHash from "./modules/my-hash.js";
 import { mkdir, access, copyFile, readdir, stat } from "node:fs/promises";
 import { log } from "node:console";
 // npm run start -- --username=Aleksandr
@@ -50,6 +51,9 @@ const args = input.split(' ')
     }
     else if (input.startsWith("os ")) {
       myOs.osi(args[1])
+    }
+    else if (input.startsWith("hash ")) {
+      myHash.calculateHash(workingDir, args[1])
     }
     
     else {
