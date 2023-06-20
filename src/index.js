@@ -7,6 +7,7 @@ import myLs from "./modules/my-ls.js";
 import myFs from "./modules/my-fs.js";
 import myOs from "./modules/my-os.js";
 import myHash from "./modules/my-hash.js";
+import myBrotli from "./modules/my-brotli.js";
 import { mkdir, access, copyFile, readdir, stat } from "node:fs/promises";
 import { log } from "node:console";
 // npm run start -- --username=Aleksandr
@@ -54,6 +55,12 @@ const args = input.split(' ')
     }
     else if (input.startsWith("hash ")) {
       myHash.calculateHash(workingDir, args[1])
+    }
+    else if (input.startsWith("compress ")) {
+      myBrotli.compress(workingDir, args[1], args[2])
+    }
+    else if (input.startsWith("decompress ")) {
+      myBrotli.decompress(workingDir, args[1], args[2])
     }
     
     else {

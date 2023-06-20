@@ -1,5 +1,15 @@
+import path from "node:path";
+import {
+  access,
+  readdir,
+  rename,
+  unlink,
+  rm,
+  writeFile,
+} from "node:fs/promises";
+
 export const createPath = async (workingDir, inputPath) => {
-  //console.log('----', workingDir, inputPath);
+  console.log('----', workingDir, inputPath);
   let newPath = workingDir;
   if (path.isAbsolute(inputPath)) {
     newPath = inputPath;

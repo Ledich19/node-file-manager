@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises";
 const { createHash } = await import("node:crypto");
 import path from "path";
-import { createPath } from "./healpers";
+import { createPath } from "./healpers.js";
 
 const calculateHash = async (workingDir,pathToFile) => {
   const filePath = createPath(workingDir,pathToFile)
