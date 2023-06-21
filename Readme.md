@@ -4,6 +4,10 @@
 >`path_to_directory` can be relative or absolute
 >`path_to_file` can be relative or absolute 
 
+### Navigation & working directory
+`up` Go upper from current directory 
+`cd path_to_directory` Go to dedicated folder from current directory
+
 ### Basic operations with files
 
 `cat path_to_file` Read file and print it's content in console :
@@ -32,5 +36,27 @@
 
 <details>
 <summary>## Commands for test</summary>
+
+cd C:\Users\Aleksandr\forTests
+cd C:\Users\Aleksandr
+cd .\forTests
+
+cat ./test-folder/test-file.txt
+add test-file-new.txt
+rn ./test-file-new.txt test-file-rename.txt
+cp ./test-file-rename.txt ./test-folder
+mv ./test-file-rename.txt ./test-folder
+rm .test-folder/test-file-rename.txt
+
+os --EOL
+os --cpus
+os --homedir
+os --username
+os --architecture
+
+hash .test-folder/test-file.txt
+
+compress .test-folder/test-file.txt ./test-folder
+decompress .test-folder/test-file.txt.br ./test-folder
 
 </details>
