@@ -14,50 +14,70 @@ import { log } from "node:console";
 const username = process.argv[2].slice(2).split("=")[1];
 let workingDir = os.homedir();
 const rl = readline.createInterface({ input: stdin, output: stdout });
+
 console.log(
-  `\u001B[33m Welcome to the File Manager, \u001B[35m${username}\u001B[0m`
+  `\u001B[33m Welcome to the File Manager,\u001B[35m${username}`,
+  `\u001B[33m You are currently in \u001B[32m${workingDir}\u001B[0m`
 );
-console.log(`\u001B[33m You are currently in \u001B[32m${workingDir}\u001B[0m`);
+
+const handleCommand = async (input, args) => {
+  const command = args[0].trim();
+  switch (true) {
+    case command === "up":
+      workingDir = myCd.up(workingDir);
+      break;
+    case command === "cd" && args.length === 2:
+      workingDir = await myCd.cd(workingDir, input.slice(3).trim());
+      break;
+    case input === "ls":
+      myLs.ls(workingDir);
+      break;
+    case command === "cat" && args.length === 2:
+      myFs.cat(workingDir, args[1]);
+      break;
+    case command === "add" && args.length === 2:
+      myFs.add(workingDir, args[1]);
+      break;
+    case command === "rn" && args.length === 3:
+      myFs.rn(workingDir, args[1], args[2]);
+      break;
+    case command === "cp" && args.length === 3:
+      myFs.cp(workingDir, args[1], args[2]);
+      break;
+    case command === "mv" && args.length === 3:
+      myFs.mv(workingDir, args[1], args[2]);
+      break;
+    case command === "rm" && args.length === 2:
+      myFs.rmf(workingDir, args[1]);
+      break;
+    case command === "os" && args.length === 2:
+      myOs.osi(args[1]);
+      break;
+    case command === "hash" && args.length === 2:
+      myHash.calculateHash(workingDir, args[1]);
+      break;
+    case command === "compress" && args.length === 3:
+      myBrotli.compress(workingDir, args[1], args[2]);
+      break;
+    case command === "decompress" && args.length === 3:
+      myBrotli.decompress(workingDir, args[1], args[2]);
+      break;
+    default:
+      console.error(`\u001B[31m Invalid input \u001B[0m`);
+      break;
+  }
+};
 
 rl.on("line", async (input) => {
   const args = input.split(" ");
-
   try {
     if (input === ".exit") {
       rl.close();
-    } else if (input === "up") {
-      workingDir = myCd.up(workingDir);
-    } else if (input.startsWith("cd ")) {
-      workingDir = await myCd.cd(workingDir, input.slice(3).trim());
-    } else if (input === "ls") {
-      myLs.ls(workingDir);
-    } else if (input.startsWith("cat ")) {
-      myFs.cat(workingDir, args[1]);
-    } else if (input.startsWith("add ")) {
-      myFs.add(workingDir, args[1]);
-    } else if (input.startsWith("rn ")) {
-      myFs.rn(workingDir, args[1], args[2]);
-    } else if (input.startsWith("cp ")) {
-      console.log("-------cp");
-      myFs.cp(workingDir, args[1], args[2]);
-    } else if (input.startsWith("mv ")) {
-      console.log("MV");
-      myFs.mv(workingDir, args[1], args[2]);
-    } else if (input.startsWith("rm ")) {
-      myFs.rmf(workingDir, args[1]);
-    } else if (input.startsWith("os ")) {
-      myOs.osi(args[1]);
-    } else if (input.startsWith("hash ")) {
-      myHash.calculateHash(workingDir, args[1]);
-    } else if (input.startsWith("compress ")) {
-      myBrotli.compress(workingDir, args[1], args[2]);
-    } else if (input.startsWith("decompress ")) {
-      myBrotli.decompress(workingDir, args[1], args[2]);
     } else {
-      console.log(`\u001B[31m Invalid input \u001B[0m`);
+      await handleCommand(args);
     }
   } catch (error) {
-    console.log(`\u001B[31m Operation failed \u001B[0m`, error);
+    console.error(`\u001B[31m Operation failed \u001B[0m`, error);
   } finally {
     if (input !== ".exit") {
       console.log(
