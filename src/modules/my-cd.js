@@ -4,6 +4,7 @@ import { mkdir, access, copyFile, readdir, stat } from "node:fs/promises";
 const up = (workingDir) => {
   return path.dirname(workingDir);
 };
+
 const cd = async (workingDir, inputPath) => {
   let newPath = workingDir;
   if (path.isAbsolute(inputPath)) {

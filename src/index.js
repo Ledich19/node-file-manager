@@ -1,35 +1,34 @@
 import readline from "node:readline/promises";
 import { stdin, stdout } from "node:process";
 import os from "node:os";
-import path from "node:path";
 import myCd from "./modules/my-cd.js";
 import myLs from "./modules/my-ls.js";
 import myFs from "./modules/my-fs.js";
 import myOs from "./modules/my-os.js";
 import myHash from "./modules/my-hash.js";
 import myBrotli from "./modules/my-brotli.js";
-import { mkdir, access, copyFile, readdir, stat } from "node:fs/promises";
-import { log } from "node:console";
+
 // npm run start -- --username=Aleksandr
 const username = process.argv[2].slice(2).split("=")[1];
 let workingDir = os.homedir();
 const rl = readline.createInterface({ input: stdin, output: stdout });
 
 console.log(
-  `\u001B[33m Welcome to the File Manager,\u001B[35m${username}`,
-  `\u001B[33m You are currently in \u001B[32m${workingDir}\u001B[0m`
+  `\u001B[33m Welcome to the File Manager,\u001B[35m${username}\n`,
+  `\u001B[0m You are currently in \u001B[32m${workingDir}\u001B[0m`
 );
 
-const handleCommand = async (input, args) => {
-  const command = args[0].trim();
+const handleCommand = async (input) => {
+  const args = input.trim().split(" ");
+  const command = args[0];
   switch (true) {
     case command === "up":
       workingDir = myCd.up(workingDir);
       break;
     case command === "cd" && args.length === 2:
-      workingDir = await myCd.cd(workingDir, input.slice(3).trim());
+      workingDir = await myCd.cd(workingDir, args[1]);
       break;
-    case input === "ls":
+    case command === "ls":
       myLs.ls(workingDir);
       break;
     case command === "cat" && args.length === 2:
@@ -69,25 +68,24 @@ const handleCommand = async (input, args) => {
 };
 
 rl.on("line", async (input) => {
-  const args = input.split(" ");
   try {
     if (input === ".exit") {
       rl.close();
     } else {
-      await handleCommand(args);
+      await handleCommand(input);
     }
   } catch (error) {
     console.error(`\u001B[31m Operation failed \u001B[0m`, error);
   } finally {
     if (input !== ".exit") {
       console.log(
-        `\u001B[33m You are currently in \u001B[32m${workingDir}\u001B[0m`
+        `You are currently in \u001B[32m${workingDir}\u001B[0m`
       );
     }
   }
 });
 
-rl.on("close", (code) => {
+rl.on("close", () => {
   console.log(
     `\u001B[33m Thank you for using File Manager, \u001B[35m${username},\u001B[33m goodbye! \n \u001B[0m`
   );

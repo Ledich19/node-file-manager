@@ -29,10 +29,9 @@ const cat = async (workingDir, filePath) => {
 
 const add = async (workingDir, newFileName) => {
   const newFilePath = path.join(workingDir, newFileName);
-  console.log("newFilePath ADD:", newFilePath);
   try {
-    const promise = writeFile(newFilePath, "", { flag: "wx" });
-    await promise;
+    await writeFile(newFilePath, "", { flag: "wx" });
+    console.log("newFilePath added:", newFilePath);
   } catch (err) {
     throw Error(`\u001B[31mFS operation failed\u001B[0m ${err.message}`);
   }

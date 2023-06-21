@@ -20,6 +20,7 @@ const osi = async (arg) => {
       console.log(`\u001B[36m ${os.arch()}\u001B[0m `);
       break;
     default:
+      console.error(`\u001B[31m Invalid input \u001B[0m`);
       break;
   }
 };

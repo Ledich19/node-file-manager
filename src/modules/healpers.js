@@ -15,3 +15,4 @@ export const createPath = async (workingDir, inputPath) => {
     console.log("Path dose'nt exist");
   }
 };
+
