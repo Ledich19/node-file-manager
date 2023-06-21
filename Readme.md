@@ -1,3 +1,36 @@
 # Node.js file manager
 
-## !!! Please don't submit Pull Requests to this repository !!!
+>`path_to_destination` directory can be relative or absolute 
+>`path_to_directory` can be relative or absolute
+>`path_to_file` can be relative or absolute 
+
+### Basic operations with files
+
+`cat path_to_file` Read file and print it's content in console :
+`add new_file_name` Create empty file in current working directory:
+`rn path_to_file new_filename` Rename file :
+`cp path_to_file path_to_new_directory` Copy file:
+`mv path_to_file path_to_new_directory` Move file:
+`rm path_to_file` Delete file:
+
+### Operating system info (prints following information in console)
+
+`os --EOL` Get EOL and print it to console:
+`os --cpus` Get host machine CPUs info and print it to console:
+`os --homedir` Get home directory and print it to console:
+`os --username` Get current system user name and print it to console:
+`os --architecture` Get CPU architecture for which Node.js binary has compiled and print it to console:
+
+### Hash calculation
+
+`hash path_to_file`Calculate hash for file and print it into console
+
+### Compress and decompress operations
+
+`compress path_to_file path_to_destination` Compress file (using Brotli algorithm)
+`decompress path_to_file path_to_destination` Decompress file (using Brotli algorithm)
+
+<details>
+<summary>## Commands for test</summary>
+
+</details>
