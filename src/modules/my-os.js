@@ -19,7 +19,6 @@ const osi = async (arg) => {
     case "--architecture":
       console.log(`\u001B[36m ${os.arch()}\u001B[0m `);
       break;
-
     default:
       break;
   }

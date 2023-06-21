@@ -14,8 +14,8 @@ const calculateHash = async (workingDir,pathToFile) => {
         filePath.pathname
       )}`}\u001B[0m`
     );
-  } catch (err) {
-    throw Error(`\u001B[31mHASH operation failed\u001B[0m ${err.message}`);
+  } catch {
+    throw Error(`\u001B[31mHASH operation failed\u001B[0m`);
   }
 };
 

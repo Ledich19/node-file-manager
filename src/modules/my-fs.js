@@ -1,17 +1,8 @@
 import { createReadStream, createWriteStream } from "node:fs";
-import { open } from "fs/promises";
-import {
-  access,
-  readdir,
-  rename,
-  unlink,
-  rm,
-  writeFile,
-} from "node:fs/promises";
+import { access, rename, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 const createPath = async (workingDir, inputPath) => {
-  //console.log('----', workingDir, inputPath);
   let newPath = workingDir;
   if (path.isAbsolute(inputPath)) {
     newPath = inputPath;

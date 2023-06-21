@@ -1,10 +1,8 @@
-import { createGzip, BrotliCompress, createBrotliDecompress} from "node:zlib";
+import { createBrotliDecompress} from "node:zlib";
 import { createReadStream, createWriteStream } from "node:fs";
 import { pipeline } from "node:stream/promises";
 import { createPath } from "./healpers.js";
 import path from "node:path";
-// const filePath = new URL("./files/fileToCompress.txt", import.meta.url);
-// const fileResultPath = new URL("./files/archive.gz", import.meta.url);
 
 const compress = async (workingDir, pathToFile, endPath) => {
   const currentPath = await createPath(workingDir, pathToFile);

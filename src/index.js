@@ -14,11 +14,13 @@ import { log } from "node:console";
 const username = process.argv[2].slice(2).split("=")[1];
 let workingDir = os.homedir();
 const rl = readline.createInterface({ input: stdin, output: stdout });
-console.log(`\u001B[33m Welcome to the File Manager, \u001B[35m${username}\u001B[0m`);
+console.log(
+  `\u001B[33m Welcome to the File Manager, \u001B[35m${username}\u001B[0m`
+);
 console.log(`\u001B[33m You are currently in \u001B[32m${workingDir}\u001B[0m`);
 
 rl.on("line", async (input) => {
-const args = input.split(' ')
+  const args = input.split(" ");
 
   try {
     if (input === ".exit") {
@@ -28,42 +30,30 @@ const args = input.split(' ')
     } else if (input.startsWith("cd ")) {
       workingDir = await myCd.cd(workingDir, input.slice(3).trim());
     } else if (input === "ls") {
-      myLs.ls(workingDir)
-    }
-    else if (input.startsWith("cat ")) {
-      myFs.cat(workingDir, args[1])
-    }
-    else if (input.startsWith("add ")) {
-      myFs.add(workingDir, args[1])
-    }
-    else if (input.startsWith("rn " )) {
-      myFs.rn(workingDir, args[1], args[2])
-    }
-    else if (input.startsWith("cp ")) {
-      console.log('-------cp');
-      myFs.cp(workingDir, args[1], args[2])
-    }
-    else if (input.startsWith("mv ")) {
-      console.log('MV');
-      myFs.mv(workingDir, args[1], args[2])
-    }
-    else if (input.startsWith("rm ")) {
-      myFs.rmf(workingDir, args[1])
-    }
-    else if (input.startsWith("os ")) {
-      myOs.osi(args[1])
-    }
-    else if (input.startsWith("hash ")) {
-      myHash.calculateHash(workingDir, args[1])
-    }
-    else if (input.startsWith("compress ")) {
-      myBrotli.compress(workingDir, args[1], args[2])
-    }
-    else if (input.startsWith("decompress ")) {
-      myBrotli.decompress(workingDir, args[1], args[2])
-    }
-    
-    else {
+      myLs.ls(workingDir);
+    } else if (input.startsWith("cat ")) {
+      myFs.cat(workingDir, args[1]);
+    } else if (input.startsWith("add ")) {
+      myFs.add(workingDir, args[1]);
+    } else if (input.startsWith("rn ")) {
+      myFs.rn(workingDir, args[1], args[2]);
+    } else if (input.startsWith("cp ")) {
+      console.log("-------cp");
+      myFs.cp(workingDir, args[1], args[2]);
+    } else if (input.startsWith("mv ")) {
+      console.log("MV");
+      myFs.mv(workingDir, args[1], args[2]);
+    } else if (input.startsWith("rm ")) {
+      myFs.rmf(workingDir, args[1]);
+    } else if (input.startsWith("os ")) {
+      myOs.osi(args[1]);
+    } else if (input.startsWith("hash ")) {
+      myHash.calculateHash(workingDir, args[1]);
+    } else if (input.startsWith("compress ")) {
+      myBrotli.compress(workingDir, args[1], args[2]);
+    } else if (input.startsWith("decompress ")) {
+      myBrotli.decompress(workingDir, args[1], args[2]);
+    } else {
       console.log(`\u001B[31m Invalid input \u001B[0m`);
     }
   } catch (error) {
