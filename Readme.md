@@ -46,7 +46,7 @@ add test-file-new.txt
 rn ./test-file-new.txt test-file-rename.txt
 cp ./test-file-rename.txt ./test-folder
 mv ./test-file-rename.txt ./test-folder
-rm .test-folder/test-file-rename.txt
+rm ./test-folder/test-file-rename.txt
 
 os --EOL
 os --cpus
@@ -56,7 +56,7 @@ os --architecture
 
 hash .test-folder/test-file.txt
 
-compress .test-folder/test-file.txt ./test-folder
-decompress .test-folder/test-file.txt.br ./test-folder
+compress ./test-folder/test-file.txt ./test-folder
+decompress ./test-folder/test-file.txt.br ./test-folder
 
 </details>

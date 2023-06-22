@@ -4,7 +4,8 @@
   "description": "## !!! Please don't submit Pull Requests to this repository !!!",
   "type": "module",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "dev": "node src/index.js --username=Aleksandr"
   },
   "repository": {
     "type": "git",

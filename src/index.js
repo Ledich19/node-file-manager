@@ -8,7 +8,6 @@ import myOs from "./modules/my-os.js";
 import myHash from "./modules/my-hash.js";
 import myBrotli from "./modules/my-brotli.js";
 
-// npm run start -- --username=Aleksandr
 const username = process.argv[2].slice(2).split("=")[1];
 let workingDir = os.homedir();
 const rl = readline.createInterface({ input: stdin, output: stdout });
@@ -47,19 +46,19 @@ const handleCommand = async (input) => {
       myFs.mv(workingDir, args[1], args[2]);
       break;
     case command === "rm" && args.length === 2:
-      myFs.rmf(workingDir, args[1]);
+      await myFs.rmf(workingDir, args[1]);
       break;
     case command === "os" && args.length === 2:
       myOs.osi(args[1]);
       break;
     case command === "hash" && args.length === 2:
-      myHash.calculateHash(workingDir, args[1]);
+      await myHash.calculateHash(workingDir, args[1]);
       break;
     case command === "compress" && args.length === 3:
-      myBrotli.compress(workingDir, args[1], args[2]);
+      await myBrotli.compress(workingDir, args[1], args[2]);
       break;
     case command === "decompress" && args.length === 3:
-      myBrotli.decompress(workingDir, args[1], args[2]);
+      await myBrotli.decompress(workingDir, args[1], args[2]);
       break;
     default:
       console.error(`\u001B[31m Invalid input \u001B[0m`);

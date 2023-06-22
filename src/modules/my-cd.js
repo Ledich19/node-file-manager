@@ -1,5 +1,5 @@
 import path from "node:path";
-import { mkdir, access, copyFile, readdir, stat } from "node:fs/promises";
+import { stat } from "node:fs/promises";
 
 const up = (workingDir) => {
   return path.dirname(workingDir);

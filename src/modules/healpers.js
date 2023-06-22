@@ -8,11 +8,6 @@ export const createPath = async (workingDir, inputPath) => {
   } else {
     newPath = path.resolve(workingDir, inputPath);
   }
-  try {
-    await access(newPath);
-    return newPath;
-  } catch {
-    console.log("Path dose'nt exist");
-  }
+  return newPath;
 };
 

@@ -1,22 +1,7 @@
 import { createReadStream, createWriteStream } from "node:fs";
 import { access, rename, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
-
-const createPath = async (workingDir, inputPath) => {
-  let newPath = workingDir;
-  if (path.isAbsolute(inputPath)) {
-    newPath = inputPath;
-  } else {
-    newPath = path.resolve(workingDir, inputPath);
-  }
-  try {
-    console.log("newPath", newPath);
-    await access(newPath);
-    return newPath;
-  } catch (error) {
-    throw Error("Path dose'nt exist");
-  }
-};
+import { createPath } from "./healpers";
 
 const cat = async (workingDir, filePath) => {
   const newFilePath = await createPath(workingDir, filePath);
@@ -29,38 +14,20 @@ const cat = async (workingDir, filePath) => {
 
 const add = async (workingDir, newFileName) => {
   const newFilePath = path.join(workingDir, newFileName);
-  try {
-    await writeFile(newFilePath, "", { flag: "wx" });
-    console.log("newFilePath added:", newFilePath);
-  } catch (err) {
-    throw Error(`\u001B[31mFS operation failed\u001B[0m ${err.message}`);
-  }
+  await writeFile(newFilePath, "", { flag: "wx" });
 };
 
 const rn = async (workingDir, pathToFile, newFilename) => {
   const currentPath = await createPath(workingDir, pathToFile);
   const dirname = path.dirname(currentPath);
   const newFilePath = path.join(dirname, newFilename);
-
-  try {
-    try {
-      await access(newPath);
-      throw Error(`\u001B[31mFS operation failed\u001B[0m ${err.message}`);
-    } catch {}
-    await access(pathToFile);
-    rename(currentPath, newFilePath);
-  } catch (err) {
-    throw Error(`\u001B[31mFS operation failed\u001B[0m ${err.message}`);
-  }
+  await access(currentPath);
+  rename(currentPath, newFilePath);
 };
 
 const rmf = async (workingDir, pathToFile) => {
-  const newPathToFile = path.resolve(workingDir, pathToFile);
-  try {
-    await rm(newPathToFile);
-  } catch (err) {
-    throw Error(`\u001B[31mFS operation failed\u001B[0m ${err.message}`);
-  }
+  const newPathToFile = await createPath(workingDir, pathToFile);
+  await rm(newPathToFile);
 };
 
 const cp = async (workingDir, pathToFile, pathToNewDirectory) => {
