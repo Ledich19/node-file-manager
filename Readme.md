@@ -7,7 +7,9 @@
 >`path_to_file` can be relative or absolute
 
 ### Navigation & working directory
-`up` Go upper from current directory 
+
+`up` Go upper from current directory
+
 `cd path_to_directory` Go to dedicated folder from current directory
 
 ### Basic operations with files
