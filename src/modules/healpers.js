@@ -1,5 +1,4 @@
 import path from "node:path";
-import { access } from "node:fs/promises";
 
 export const createPath = async (workingDir, inputPath) => {
   let newPath = workingDir;
