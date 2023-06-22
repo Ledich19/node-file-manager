@@ -3,7 +3,7 @@ import { stdin, stdout } from "node:process";
 import os from "node:os";
 import myCd from "./modules/my-cd.js";
 import myLs from "./modules/my-ls.js";
-import myFs from "./modules/my-fs.js";
+import myFs from "./modules/my-fss.js";
 import myOs from "./modules/my-os.js";
 import myHash from "./modules/my-hash.js";
 import myBrotli from "./modules/my-brotli.js";
@@ -22,28 +22,28 @@ const handleCommand = async (input) => {
   const command = args[0];
   switch (true) {
     case command === "up":
-      workingDir = myCd.up(workingDir);
+       workingDir = myCd.up(workingDir);
       break;
     case command === "cd" && args.length === 2:
-      workingDir = await myCd.cd(workingDir, args[1]);
+       workingDir = await myCd.cd(workingDir, args[1]);
       break;
     case command === "ls":
-      myLs.ls(workingDir);
+      await myLs.ls(workingDir);
       break;
     case command === "cat" && args.length === 2:
-      myFs.cat(workingDir, args[1]);
+      await myFs.cat(workingDir, args[1]);
       break;
     case command === "add" && args.length === 2:
-      myFs.add(workingDir, args[1]);
+      await myFs.add(workingDir, args[1]);
       break;
     case command === "rn" && args.length === 3:
       myFs.rn(workingDir, args[1], args[2]);
       break;
     case command === "cp" && args.length === 3:
-      myFs.cp(workingDir, args[1], args[2]);
+      await myFs.cp(workingDir, args[1], args[2]);
       break;
     case command === "mv" && args.length === 3:
-      myFs.mv(workingDir, args[1], args[2]);
+      await myFs.mv(workingDir, args[1], args[2]);
       break;
     case command === "rm" && args.length === 2:
       await myFs.rmf(workingDir, args[1]);

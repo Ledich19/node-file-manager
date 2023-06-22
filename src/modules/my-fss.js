@@ -1,15 +1,23 @@
 import { createReadStream, createWriteStream } from "node:fs";
 import { access, rename, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { createPath } from "./healpers";
+import { createPath } from "./healpers.js";
 
 const cat = async (workingDir, filePath) => {
   const newFilePath = await createPath(workingDir, filePath);
   const readStream = createReadStream(newFilePath);
-  readStream.on("data", (chunk) => {
-    process.stdout.write(`${chunk.toString()}\n`);
+
+  await new Promise((resolve, reject) => {
+    readStream.on("data", (chunk) => {
+      process.stdout.write(`${chunk.toString()}\n`);
+    });
+    readStream.on("error", (error) => {
+      reject(error);
+    });
+    readStream.on("end", () => {
+      resolve();
+    });
   });
-  readStream.on("end", () => {});
 };
 
 const add = async (workingDir, newFileName) => {
