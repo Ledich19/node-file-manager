@@ -1,8 +1,10 @@
 # Node.js file manager
 
->`path_to_destination` directory can be relative or absolute 
->`path_to_directory` can be relative or absolute 
->`path_to_file` can be relative or absolute 
+>`path_to_destination` directory can be relative or absolute
+>
+>`path_to_directory` can be relative or absolute
+>
+>`path_to_file` can be relative or absolute
 
 ### Navigation & working directory
 `up` Go upper from current directory 
