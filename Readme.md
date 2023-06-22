@@ -49,6 +49,7 @@
 `decompress path_to_file path_to_destination` Decompress file (using Brotli algorithm)
 
 <details>
+  
 <summary>## Commands for test</summary>
 
 cd C:\Users\Aleksandr\forTests
