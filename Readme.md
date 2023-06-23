@@ -1,5 +1,9 @@
 # Node.js file manager
 
+## The program is started by npm-script start in following way:
+```npm run start -- --username=your_username```
+
+
 >`path_to_destination` directory can be relative or absolute
 >
 >`path_to_directory` can be relative or absolute
