@@ -11,8 +11,6 @@ export let workingDir = os.homedir();
 
 const handleCommand = async (input) => {
   const args = splitString(input);
-console.log(input);
-console.log(splitString(input));
 
   const command = args[0];
   switch (true) {
