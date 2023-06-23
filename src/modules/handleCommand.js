@@ -5,11 +5,15 @@ import myOs from "./my-os.js";
 import myHash from "./my-hash.js";
 import myBrotli from "./my-brotli.js";
 import os from "node:os";
+import { splitString } from "./healpers.js";
 
 export let workingDir = os.homedir();
 
 const handleCommand = async (input) => {
-  const args = input.trim().split(" ");
+  const args = splitString(input);
+console.log(input);
+console.log(splitString(input));
+
   const command = args[0];
   switch (true) {
     case command === "up":
