@@ -1,5 +1,4 @@
-import { access, readdir } from "node:fs/promises";
-import { OPERATION_FAILED } from "./constants";
+import { readdir } from "node:fs/promises";
 
 const ls = async (workDirectory) => {
   const tableDir = [];
