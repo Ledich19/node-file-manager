@@ -1,9 +1,8 @@
 # Node.js file manager
 
-## The program is started by npm-script start in following way:
-```npm run start -- --username=your_username```
-## Exit 
-`ctrl + c` pressed or user sent `.exit` command into console
+## The program is started by npm-script: ```npm run start -- --username=your_username```
+## Exit: `ctrl + c` pressed or user sent `.exit` command into console
+
 
 >`path_to_destination` directory can be relative or absolute
 >
