@@ -1,6 +1,7 @@
 import readline from "node:readline/promises";
 import { stdin, stdout } from "node:process";
 import handleCommand, { workingDir } from "./modules/handleCommand.js";
+import { OPERATION_FAILED } from "./modules/constants.js";
 
 const username = process.argv[2]?.slice(2).split("=")[1] || 'Anonymous';
 const rl = readline.createInterface({ input: stdin, output: stdout });
@@ -18,7 +19,7 @@ rl.on("line", async (input) => {
       await handleCommand(input);
     }
   } catch (error) {
-    console.error(`\u001B[31m Operation failed \u001B[0m`, error);
+    console.error(OPERATION_FAILED, error);
   } finally {
     if (input !== ".exit") {
       console.log(`You are currently in \u001B[32m${workingDir}\u001B[0m`);

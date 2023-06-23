@@ -1,6 +1,7 @@
 import { EOL, cpus, homedir, userInfo, arch } from "node:os";
+import { INVALID_INPUT } from "./constants.js";
 
-const osi = async (_, arg) => {
+const osi = async (arg) => {
   switch (arg) {
     case "--EOL":
       console.log(`\u001B[36m ${JSON.stringify(EOL)}\u001B[0m `);
@@ -20,7 +21,7 @@ const osi = async (_, arg) => {
       console.log(`\u001B[36m ${arch()}\u001B[0m `);
       break;
     default:
-      console.error(`\u001B[31m Invalid input \u001B[0m`);
+      console.error(INVALID_INPUT);
       break;
   }
 };
