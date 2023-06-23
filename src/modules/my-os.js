@@ -6,9 +6,7 @@ const osi = async (arg) => {
       console.log(`\u001B[36m ${JSON.stringify(os.EOL)}\u001B[0m `);
       break;
     case "--cpus":
-      os.cpus().forEach((element) => {
-        console.log(element);
-      });
+      console.table(os.cpus().map((cpu) => ({model: cpu.model, speed: cpu.speed})))
       break;
     case "--homedir":
       console.log(`\u001B[36m ${os.homedir()}\u001B[0m `);

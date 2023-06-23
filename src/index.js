@@ -2,11 +2,11 @@ import readline from "node:readline/promises";
 import { stdin, stdout } from "node:process";
 import handleCommand, { workingDir } from "./modules/handleCommand.js";
 
-const username = process.argv[2].slice(2).split("=")[1];
+const username = process.argv[2]?.slice(2).split("=")[1] || 'Anonymous';
 const rl = readline.createInterface({ input: stdin, output: stdout });
 
 console.log(
-  `\u001B[33m Welcome to the File Manager,\u001B[35m${username}\n`,
+  `\u001B[33m Welcome to the File Manager, \u001B[35m${username}\n`,
   `\u001B[0m You are currently in \u001B[32m${workingDir}\u001B[0m`
 );
 
