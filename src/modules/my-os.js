@@ -1,6 +1,6 @@
 import { EOL, cpus, homedir, userInfo, arch } from "node:os";
 
-const osi = async (arg) => {
+const osi = async (_, arg) => {
   switch (arg) {
     case "--EOL":
       console.log(`\u001B[36m ${JSON.stringify(EOL)}\u001B[0m `);

@@ -9,53 +9,38 @@ import { splitString } from "./healpers.js";
 
 export let workingDir = os.homedir();
 
+const commands = {
+  up: (wd) => {
+    workingDir = myCd.up(wd);
+  },
+  ls: myLs.ls,
+  cd: async (wd, arg) => {
+    workingDir = await myCd.cd(workingDir, arg);
+  },
+  cat: await myFs.cat,
+  add: await myFs.add,
+  rm: await myFs.rmf,
+  os: myOs.osi,
+  hash: await myHash.calculateHash,
+  rn: myFs.rn,
+  cp: await myFs.cp,
+  mv: await myFs.mv,
+  compress: await myBrotli.compress,
+  decompress: await myBrotli.decompress,
+};
+
 const handleCommand = async (input) => {
   const args = splitString(input);
-
+  const len = args.length;
   const command = args[0];
-  switch (true) {
-    case command === "up":
-      workingDir = myCd.up(workingDir);
-      break;
-    case command === "cd" && args.length === 2:
-      workingDir = await myCd.cd(workingDir, args[1]);
-      break;
-    case command === "ls":
-      await myLs.ls(workingDir);
-      break;
-    case command === "cat" && args.length === 2:
-      await myFs.cat(workingDir, args[1]);
-      break;
-    case command === "add" && args.length === 2:
-      await myFs.add(workingDir, args[1]);
-      break;
-    case command === "rn" && args.length === 3:
-      myFs.rn(workingDir, args[1], args[2]);
-      break;
-    case command === "cp" && args.length === 3:
-      await myFs.cp(workingDir, args[1], args[2]);
-      break;
-    case command === "mv" && args.length === 3:
-      await myFs.mv(workingDir, args[1], args[2]);
-      break;
-    case command === "rm" && args.length === 2:
-      await myFs.rmf(workingDir, args[1]);
-      break;
-    case command === "os" && args.length === 2:
-      myOs.osi(args[1]);
-      break;
-    case command === "hash" && args.length === 2:
-      await myHash.calculateHash(workingDir, args[1]);
-      break;
-    case command === "compress" && args.length === 3:
-      await myBrotli.compress(workingDir, args[1], args[2]);
-      break;
-    case command === "decompress" && args.length === 3:
-      await myBrotli.decompress(workingDir, args[1], args[2]);
-      break;
-    default:
-      console.error(`\u001B[31m Invalid input \u001B[0m`);
-      break;
+  if (command in commands && len === 1) {
+    await commands[command](workingDir);
+  } else if (command in commands && len === 2) {
+    await commands[command](workingDir, args[1]);
+  } else if (command in commands && len === 3) {
+    await commands[command](workingDir, args[1], args[2]);
+  } else {
+    console.error(`\u001B[31m Invalid input \u001B[0m`);
   }
 };
 
