@@ -1,0 +1,20 @@
+{
+  "name": "file-manager",
+  "version": "1.0.0",
+  "description": "## !!! Please don't submit Pull Requests to this repository !!!",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node src/index.js --username=Aleksandr"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ledich19/node-file-manager.git"
+  },
+  "author": "ledich19",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ledich19/node-file-manager/issues"
+  },
+  "homepage": "https://github.com/Ledich19/node-file-manager#readme"
+}
